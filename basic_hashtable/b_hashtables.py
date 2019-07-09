@@ -24,7 +24,9 @@ class BasicHashTable:
 # Research and implement the djb2 hash function
 # '''
 def hash(string, max):
-    pass
+    hash_value = 5381
+    for char in string:
+        hash_value = ((hash_value << 5) + hash_value) + ord(char)
 
 
 # '''
@@ -33,7 +35,21 @@ def hash(string, max):
 # If you are overwriting a value with a different key, print a warning.
 # '''
 def hash_table_insert(hash_table, key, value):
-    pass
+    storage = hash_table.storage
+    avl_index = None
+    exists  = False
+    for i in range(len(storage)):
+        if storage[i] == None:
+            avl_index = i
+            exists = True
+    if exists:
+        storage[i][1] = value
+        print(f'This key: {key}, is overwritten ')
+    elif avl_index == None:
+        storage[len(storage)] = (key, value)
+        print('Out of bound error')
+    else:
+        storage[avl_index]  = (key, value)
 
 
 # '''
